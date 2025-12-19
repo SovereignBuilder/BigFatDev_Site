@@ -1,0 +1,39 @@
+---
+import Layout from "../../../components/Layout.astro";
+import { getCollection } from "astro:content";
+import { formatDate } from "../../../lib/format";
+import { slugFromSection } from "../../../lib/sections";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("blog");
+  return posts
+    .filter((post) => !post.data.draft)
+    .map((post) => ({
+      params: {
+        section: slugFromSection(post.data.section) ?? "blog",
+        slug: post.slug,
+      },
+      props: { post },
+    }));
+}
+
+const { post } = Astro.props;
+const { Content } = await post.render();
+const sectionSlug = slugFromSection(post.data.section) ?? "blog";
+---
+
+<Layout title={post.data.title} description={post.data.excerpt} currentPath="/blog">
+  <article class="content">
+    <p class="meta">
+      <a href="/blog">Blog</a> /
+      <a href={`/blog/${sectionSlug}`}>{post.data.section}</a>
+    </p>
+    <header style="margin-top: 18px;">
+      <h1>{post.data.title}</h1>
+      <p class="meta">{formatDate(post.data.date)}</p>
+    </header>
+    <div class="content" style="margin-top: 24px;">
+      <Content />
+    </div>
+  </article>
+</Layout>

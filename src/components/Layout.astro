@@ -1,51 +1,221 @@
 ---
-import '../style/demo-styling.css'
+import "../styles/site.css";
 
 export interface Props {
-	title: string;
+  title?: string;
+  description?: string;
+  currentPath?: string;
 }
 
-const { title } = Astro.props as Props;
+const siteTitle = "Big Fat Developments";
+const defaultDescription = "Dev / Life / Play";
+const { title, description, currentPath } = Astro.props as Props;
+const pageTitle = title ? `${title} — ${siteTitle}` : siteTitle;
+const metaDescription = description ?? defaultDescription;
 ---
 
 <!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width">
-  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-	<title>{title}</title>
-</head>
-<body>
-	<slot />
-</body>
-</html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content={metaDescription} />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <title>{pageTitle}</title>
+    <script is:inline>
+      (() => {
+        try {
+          const stored = localStorage.getItem("theme");
+          const preferred = window.matchMedia("(prefers-color-scheme: dark)").matches
+            ? "dark"
+            : "light";
+          const theme = stored === "light" || stored === "dark" ? stored : preferred;
+          document.documentElement.dataset.theme = theme;
+        } catch {}
+      })();
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div class="page">
+      <header class="site-header">
+        <div class="page-shell">
+          <div class="site-header__row">
+            <div class="site-brand">
+              <a
+                class="site-brand__logo-link"
+                href="/branding/BFD_logo_full_invert.png"
+                target="_blank"
+                rel="noopener"
+                aria-label="Open logo full size"
+                data-logo-link
+                data-logo-dark="/branding/BFD_logo_full_invert.png"
+                data-logo-light="/branding/BFD_logo_soft_on_grey_8x.png"
+              >
+                <img
+                  class="site-brand__logo dark"
+                  src="/branding/BFD_logo_full_invert.png"
+                  alt="Big Fat Developments logo"
+                  width="84"
+                  height="84"
+                />
+                <img
+                  class="site-brand__logo light"
+                  src="/branding/BFD_logo_soft_on_grey_8x.png"
+                  alt="Big Fat Developments logo"
+                  width="84"
+                  height="84"
+                />
+              </a>
+              <span class="site-brand__text">
+                <a class="site-brand__title" href="/">{siteTitle}</a>
+                <span class="site-brand__subtitle">Dev / Life / Play</span>
+              </span>
+            </div>
+            <div class="site-actions">
+              <button
+                class="icon-btn"
+                type="button"
+                data-theme-toggle
+                aria-label="Toggle theme"
+              >
+                <span data-theme-toggle-label>Theme</span>
+              </button>
+              <button
+                class="icon-btn nav-toggle"
+                type="button"
+                data-nav-toggle
+                aria-controls="site-nav"
+                aria-expanded="false"
+              >
+                Menu
+              </button>
+            </div>
+          </div>
+          <nav aria-label="Primary">
+            <ul id="site-nav" class="site-nav" data-nav data-open="false">
+              <li>
+                <a class="site-nav__link" href="/" aria-current={currentPath === "/" ? "page" : undefined}>
+                  Home
+                </a>
+              </li>
+              <li>
+                <a
+                  class="site-nav__link"
+                  href="/blog"
+                  aria-current={currentPath === "/blog" ? "page" : undefined}
+                >
+                  Blog
+                </a>
+              </li>
+              <li>
+                <a
+                  class="site-nav__link"
+                  href="/dev"
+                  aria-current={currentPath === "/dev" ? "page" : undefined}
+                >
+                  Dev (Projects)
+                </a>
+              </li>
+              <li>
+                <a
+                  class="site-nav__link"
+                  href="/shop"
+                  aria-current={currentPath === "/shop" ? "page" : undefined}
+                >
+                  Shop
+                </a>
+              </li>
+              <li>
+                <a
+                  class="site-nav__link"
+                  href="/whats-happening"
+                  aria-current={currentPath === "/whats-happening" ? "page" : undefined}
+                >
+                  What’s Happening
+                </a>
+              </li>
+              <li>
+                <a
+                  class="site-nav__link"
+                  href="/about"
+                  aria-current={currentPath === "/about" ? "page" : undefined}
+                >
+                  About
+                </a>
+              </li>
+              <li>
+                <a
+                  class="site-nav__link"
+                  href="/support"
+                  aria-current={currentPath === "/support" ? "page" : undefined}
+                >
+                  Contact / Support
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </header>
+      <main id="main">
+        <div class="page-shell">
+          <slot />
+        </div>
+      </main>
+      <footer class="site-footer">
+        <div class="page-shell">© 2025 MJ</div>
+      </footer>
+    </div>
 
-<style>
-  :root {
-    --font-size-base: clamp(1rem, 0.34vw + 0.91rem, 1.19rem);
-		--font-size-lg: clamp(1.2rem, 0.7vw + 1.2rem, 1.5rem); 
-    --font-size-xl: clamp(2.44rem, 2.38vw + 1.85rem, 3.75rem);
-    --color-text: hsl(12, 5%, 4%);
-    --color-bg: hsl(10, 21%, 95%);
-  }
-  html {
-    font-family: system-ui, sans-serif;
-    font-size: var(--font-size-base);
-    color: var(--color-text);
-    background-color: var(--color-bg);
-  }
-  body {
-    margin: 0;
-  }
-  :global(h1) {
-    font-size: var(--font-size-xl);
-  }
-  :global(h2) {
-    font-size: var(--font-size-lg);
-  }
-  :global(code) {
-    font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
-			Bitstream Vera Sans Mono, Courier New, monospace;
-  }
-</style>
+    <script is:inline>
+      (() => {
+        const nav = document.querySelector("[data-nav]");
+        const navToggle = document.querySelector("[data-nav-toggle]");
+        if (nav && navToggle) {
+          const sync = (open) => {
+            nav.dataset.open = open ? "true" : "false";
+            navToggle.setAttribute("aria-expanded", String(open));
+          };
+          sync(false);
+          navToggle.addEventListener("click", () =>
+            sync(navToggle.getAttribute("aria-expanded") !== "true")
+          );
+        }
+
+        const themeToggle = document.querySelector("[data-theme-toggle]");
+        const getTheme = () =>
+          document.documentElement.dataset.theme === "light" ? "light" : "dark";
+        const logoLink = document.querySelector("[data-logo-link]");
+        const syncLogoLink = () => {
+          if (!logoLink) return;
+          const theme = getTheme();
+          const darkHref = logoLink.getAttribute("data-logo-dark");
+          const lightHref = logoLink.getAttribute("data-logo-light");
+          logoLink.setAttribute("href", theme === "light" ? lightHref : darkHref);
+        };
+        const themeLabel = document.querySelector("[data-theme-toggle-label]");
+        const syncThemeLabel = () => {
+          const theme = getTheme();
+          const nextThemeLabel = theme === "dark" ? "Light mode" : "Dark mode";
+          if (themeLabel) themeLabel.textContent = nextThemeLabel;
+          if (themeToggle) {
+            themeToggle.setAttribute("aria-label", `Switch to ${nextThemeLabel}`);
+          }
+        };
+        const setTheme = (theme) => {
+          document.documentElement.dataset.theme = theme;
+          try {
+            localStorage.setItem("theme", theme);
+          } catch {}
+          syncLogoLink();
+          syncThemeLabel();
+        };
+        syncLogoLink();
+        syncThemeLabel();
+        themeToggle?.addEventListener("click", () =>
+          setTheme(getTheme() === "dark" ? "light" : "dark")
+        );
+      })();
+    </script>
+  </body>
+</html>

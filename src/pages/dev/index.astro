@@ -1,0 +1,38 @@
+---
+import Layout from "../../components/Layout.astro";
+import { getCollection } from "astro:content";
+
+const projects = (await getCollection("projects")).sort(
+  (a, b) => (b.data.date?.valueOf() ?? 0) - (a.data.date?.valueOf() ?? 0)
+);
+---
+
+<Layout title="Dev (Projects)" description="A small set of current and past projects." currentPath="/dev">
+  <section class="content">
+    <h1>Dev (Projects)</h1>
+    <p class="meta">Placeholders for now. Status stays visible.</p>
+  </section>
+
+  <section style="margin-top: 24px;">
+    <div class="list-grid">
+      {projects.map((project) => (
+        <div class="list-item">
+          <div style="display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap;">
+            <h3 style="margin: 0;">{project.data.title}</h3>
+            <span class="meta">{project.data.status}</span>
+          </div>
+          <p>{project.data.description}</p>
+          {project.data.links && project.data.links.length > 0 && (
+            <div style="margin-top: 14px; display: flex; gap: 10px; flex-wrap: wrap;">
+              {project.data.links.map((link) => (
+                <a class="btn secondary" href={link.url}>
+                  {link.label}
+                </a>
+              ))}
+            </div>
+          )}
+        </div>
+      ))}
+    </div>
+  </section>
+</Layout>

@@ -1,0 +1,51 @@
+---
+import Layout from "../../../components/Layout.astro";
+import { getCollection } from "astro:content";
+import { BLOG_SECTIONS, sectionFromSlug } from "../../../lib/sections";
+import { formatDate } from "../../../lib/format";
+
+export async function getStaticPaths() {
+  return BLOG_SECTIONS.map((section) => ({ params: { section: section.slug } }));
+}
+
+const { section: sectionSlug } = Astro.params;
+const section = sectionFromSlug(sectionSlug);
+if (!section) throw new Error("Unknown section");
+
+const posts = (await getCollection("blog"))
+  .filter((post) => post.data.section === section.title && !post.data.draft)
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+---
+
+<Layout title={section.title} description={`Posts in ${section.title}.`} currentPath="/blog">
+  <section class="content">
+    <p class="meta">
+      <a href="/blog">Blog</a> / {section.title}
+    </p>
+    <h1>{section.title}</h1>
+    <p class="meta">
+      {section.title === "Dev Diary" &&
+        "Notes from building: small decisions, steady practice, honest progress."}
+      {section.title === "Artificial Intelligence Engineering" &&
+        "Design and implementation notes: evaluation, tooling, and practical systems."}
+      {section.title === "Mystical Musings" &&
+        "Quiet writing: symbols, timing, and the soft edges of meaning."}
+    </p>
+  </section>
+
+  <section style="margin-top: 24px;">
+    <ol class="list-grid">
+      {posts.map((post) => (
+        <li class="list-item">
+          <div style="display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap;">
+            <h3 style="margin: 0;">
+              <a href={`/blog/${section.slug}/${post.slug}`}>{post.data.title}</a>
+            </h3>
+            <span class="meta">{formatDate(post.data.date)}</span>
+          </div>
+          <p>{post.data.excerpt}</p>
+        </li>
+      ))}
+    </ol>
+  </section>
+</Layout>

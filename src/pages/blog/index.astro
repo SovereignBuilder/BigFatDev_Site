@@ -1,0 +1,34 @@
+---
+import Layout from "../../components/Layout.astro";
+import { BLOG_SECTIONS } from "../../lib/sections";
+---
+
+<Layout title="Blog" description="Three shelves: Dev Diary, AI Engineering, Mystical Musings." currentPath="/blog">
+  <section class="content">
+    <h1>Blog</h1>
+    <p class="meta">Three shelves. No tags. Each section has its own index.</p>
+  </section>
+
+  <section style="margin-top: 32px;">
+    <div class="grid-3">
+      {BLOG_SECTIONS.map((section) => (
+        <div class="card">
+          <h3>{section.title}</h3>
+          <p>
+            {section.title === "Dev Diary" &&
+              "Notes from building: small decisions, steady practice, honest progress."}
+            {section.title === "Artificial Intelligence Engineering" &&
+              "Design and implementation notes: evaluation, tooling, and practical systems."}
+            {section.title === "Mystical Musings" &&
+              "Quiet writing: symbols, timing, and the soft edges of meaning."}
+          </p>
+          <div style="margin-top: 16px;">
+            <a class="btn secondary" href={`/blog/${section.slug}`}>
+              Open section
+            </a>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+</Layout>

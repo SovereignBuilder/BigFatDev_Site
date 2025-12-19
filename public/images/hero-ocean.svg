@@ -1,0 +1,24 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Quiet ocean placeholder">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0f2435" />
+      <stop offset="55%" stop-color="#264861" />
+      <stop offset="100%" stop-color="#d7b48a" />
+    </linearGradient>
+    <linearGradient id="sea" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1f4359" />
+      <stop offset="100%" stop-color="#0c1b25" />
+    </linearGradient>
+    <linearGradient id="sand" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#c99056" />
+      <stop offset="100%" stop-color="#8c5a2f" />
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#sky)" />
+  <circle cx="780" cy="300" r="140" fill="#f2e6d2" opacity="0.85" />
+  <rect y="420" width="1600" height="280" fill="url(#sea)" />
+  <rect y="650" width="1600" height="250" fill="url(#sand)" />
+  <path d="M0 640 C 250 620, 520 670, 800 640 C 1080 610, 1350 660, 1600 630 L1600 900 L0 900 Z" fill="#e7d1b2" opacity="0.25" />
+  <path d="M0 560 C 320 520, 640 590, 920 560 C 1200 530, 1440 590, 1600 560" stroke="#a4c2d7" stroke-width="6" fill="none" opacity="0.65" />
+  <path d="M0 520 C 320 490, 620 540, 940 520 C 1220 500, 1420 540, 1600 520" stroke="#7ea1bb" stroke-width="4" fill="none" opacity="0.4" />
+</svg>

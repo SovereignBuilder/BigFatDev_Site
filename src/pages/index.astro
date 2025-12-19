@@ -1,41 +1,56 @@
 ---
-import Layout from '../components/Layout.astro';
-import Background from '../components/Background.astro';
+import Layout from "../components/Layout.astro";
 ---
 
-<Layout title="Astro Quickstart">
-	<main>
-   <Background />
-    <div id="content">
-      <div class="header">
-        <h1>Quickstart Template</h1>
-        <div class="logo">
-          <img src="https://user-images.githubusercontent.com/43764894/223559085-8ff69d2f-4247-427f-a3a6-d2036b00082a.png" alt="Netlify plus Astro banner">
+<Layout description="Dev / Life / Play." currentPath="/">
+  <section class="hero" style="margin-top: 12px;">
+    <div class="hero__media">
+      <img src="/images/hero-ocean.svg" alt="Quiet ocean at sunset" loading="eager" />
+      <div class="hero__overlay" aria-hidden="true"></div>
+      <div class="hero__content">
+        <p>Within these lines</p>
+        <h2>My personal stories</h2>
+        <div class="hero__actions">
+          <a class="btn primary" href="/blog">Read the blog</a>
+          <a class="btn secondary" href="/dev">Explore projects</a>
         </div>
-        <h2>
-          This is a bare-bones Astro project that has everything you need to quickly deploy it to Netlify
-        </h2>
-        <div class="btns">
-          <a href="https://app.netlify.com/start/deploy?repository=https://github.com/netlify-templates/astro-quickstart" class="btn primary">Deploy to Netlify</a>
-          <a href="https://github.com/netlify-templates/astro-quickstart" class="btn secondary">View Repo</a>
-        </div>
-      </div>
-			<div class="resource-list">
-        <ul>
-          <li>
-            <a href="https://ntl.fyi/38O9wmY">Netlify Blog: Astro posts</a>
-					</li>
-          <li>
-            <a href="https://developers.netlify.com/guides/tag/astro/">Netlify DevHub: Astro Guides</a>
-					</li>
-          <li>
-            <a href="https://ntl.fyi/3KHGtyz">Netlify Docs</a>
-          </li>
-          <li>
-            <a href="https://docs.astro.build/en/getting-started/">Astro Docs</a>
-          </li>
-        </ul>
       </div>
     </div>
-	</main>
+  </section>
+
+  <section style="margin-top: 48px;">
+    <h2 class="section-title">Who I am, what I make, why I write</h2>
+    <div class="grid-3">
+      <div class="card">
+        <h3>Who I am</h3>
+        <p>MJ. A builder who prefers clear edges, quiet tools, and long timelines.</p>
+      </div>
+      <div class="card">
+        <h3>What I make</h3>
+        <p>Small software, experiments, and games that aim for calm utility.</p>
+      </div>
+      <div class="card">
+        <h3>Why I write</h3>
+        <p>To slow things down, keep notes, and share what holds up over time.</p>
+      </div>
+    </div>
+  </section>
+
+  <section style="margin-top: 48px;">
+    <h2 class="section-title">Current focus</h2>
+    <div class="grid-3">
+      <div class="card">
+        <h3>Tool</h3>
+        <p>A small utility that reduces friction and stays out of the way.</p>
+      </div>
+      <div class="card">
+        <h3>Game</h3>
+        <p>A slow prototype with clean rules and gentle pacing.</p>
+      </div>
+      <div class="card">
+        <h3>Writing</h3>
+        <p>Short notes: what is being built, what is being learned, what is being felt.</p>
+      </div>
+    </div>
+  </section>
 </Layout>
