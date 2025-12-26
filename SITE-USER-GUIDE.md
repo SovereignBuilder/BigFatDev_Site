@@ -25,7 +25,7 @@ Create a new Markdown file in `src/content/blog/`.
 ---
 title: "Post title"
 date: 2025-12-12
-section: "Dev Diary" # or "Artificial Intelligence Engineering" or "Mystical Musings"
+  section: "Dev Diary" # or "Human-AI Engineering" or "Methodical Musings"
 excerpt: "Short summary shown on lists."
 coverImage: "/images/optional.jpg" # optional
 draft: false # optional

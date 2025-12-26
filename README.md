@@ -32,7 +32,7 @@ Posts live in `src/content/blog/*.md` with frontmatter:
 ---
 title: "Post title"
 date: 2025-12-12
-section: "Dev Diary" # or "Artificial Intelligence Engineering" or "Mystical Musings"
+  section: "Dev Diary" # or "Human-AI Engineering" or "Methodical Musings"
 excerpt: "Short summary shown on lists."
 coverImage: "/images/optional.jpg" # optional
 draft: false # optional
@@ -41,8 +41,8 @@ draft: false # optional
 
 Each section gets its own index page:
 - `/blog/dev-diary`
-- `/blog/artificial-intelligence-engineering`
-- `/blog/mystical-musings`
+- `/blog/human-ai-engineering`
+- `/blog/methodical-musings`
 
 ## Content: projects
 

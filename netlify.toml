@@ -5,3 +5,8 @@
 
 [build.environment]
   NODE_VERSION = "18"
+
+[[redirects]]
+  from = "/whats-happening"
+  to = "/whats-happening-now"
+  status = 301

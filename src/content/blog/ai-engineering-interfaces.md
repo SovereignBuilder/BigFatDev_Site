@@ -1,7 +1,7 @@
 ---
 title: "AI Interfaces That Feel Human"
 date: 2025-10-18
-section: "Artificial Intelligence Engineering"
+section: "Human-AI Engineering"
 excerpt: "Notes on tone, pacing, and how to reduce cognitive load."
 ---
 

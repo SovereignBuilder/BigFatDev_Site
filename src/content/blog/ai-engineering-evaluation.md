@@ -1,7 +1,7 @@
 ---
 title: "Evaluation Over Vibes"
 date: 2025-12-02
-section: "Artificial Intelligence Engineering"
+section: "Human-AI Engineering"
 excerpt: "A gentle reminder to measure what matters before shipping."
 ---
 

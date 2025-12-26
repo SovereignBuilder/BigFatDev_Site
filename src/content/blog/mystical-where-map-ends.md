@@ -1,7 +1,7 @@
 ---
 title: "Where the Map Ends"
 date: 2025-09-07
-section: "Mystical Musings"
+section: "Methodical Musings"
 excerpt: "A placeholder for future stories: symbols, dreams, and quiet meaning."
 ---
 

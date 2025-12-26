@@ -1,7 +1,7 @@
 ---
 title: "Mist and Metrics"
 date: 2025-12-01
-section: "Mystical Musings"
+section: "Methodical Musings"
 excerpt: "A short note on listening, timing, and not forcing the signal."
 ---
 

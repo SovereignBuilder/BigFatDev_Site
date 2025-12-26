@@ -10,7 +10,7 @@ export interface Props {
 const siteTitle = "Big Fat Developments";
 const defaultDescription = "Dev / Life / Play";
 const { title, description, currentPath } = Astro.props as Props;
-const pageTitle = title ? `${title} — ${siteTitle}` : siteTitle;
+const pageTitle = title ? `${title} - ${siteTitle}` : siteTitle;
 const metaDescription = description ?? defaultDescription;
 ---
 
@@ -129,10 +129,10 @@ const metaDescription = description ?? defaultDescription;
               <li>
                 <a
                   class="site-nav__link"
-                  href="/whats-happening"
-                  aria-current={currentPath === "/whats-happening" ? "page" : undefined}
+                  href="/whats-happening-now"
+                  aria-current={currentPath === "/whats-happening-now" ? "page" : undefined}
                 >
-                  What’s Happening
+                  Now
                 </a>
               </li>
               <li>
@@ -163,7 +163,7 @@ const metaDescription = description ?? defaultDescription;
         </div>
       </main>
       <footer class="site-footer">
-        <div class="page-shell">© 2025 MJ</div>
+        <div class="page-shell">?? 2025 MJ</div>
       </footer>
     </div>
 
@@ -219,3 +219,4 @@ const metaDescription = description ?? defaultDescription;
     </script>
   </body>
 </html>
+

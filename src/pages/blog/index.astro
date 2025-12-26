@@ -3,7 +3,11 @@ import Layout from "../../components/Layout.astro";
 import { BLOG_SECTIONS } from "../../lib/sections";
 ---
 
-<Layout title="Blog" description="Three shelves: Dev Diary, AI Engineering, Mystical Musings." currentPath="/blog">
+<Layout
+  title="Blog"
+  description="Three shelves: Dev Diary, Human-AI Engineering, Methodical Musings."
+  currentPath="/blog"
+>
   <section class="content">
     <h1>Blog</h1>
     <p class="meta">Three shelves. No tags. Each section has its own index.</p>
@@ -17,10 +21,10 @@ import { BLOG_SECTIONS } from "../../lib/sections";
           <p>
             {section.title === "Dev Diary" &&
               "Notes from building: small decisions, steady practice, honest progress."}
-            {section.title === "Artificial Intelligence Engineering" &&
-              "Design and implementation notes: evaluation, tooling, and practical systems."}
-            {section.title === "Mystical Musings" &&
-              "Quiet writing: symbols, timing, and the soft edges of meaning."}
+            {section.title === "Human-AI Engineering" &&
+              "Human-aligned systems, evaluation, tooling, and practical workflows."}
+            {section.title === "Methodical Musings" &&
+              "Internal process: discipline, mindset, and steady reflection."}
           </p>
           <div style="margin-top: 16px;">
             <a class="btn secondary" href={`/blog/${section.slug}`}>

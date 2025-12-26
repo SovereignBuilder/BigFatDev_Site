@@ -24,9 +24,13 @@ const sections = ["Software", "Games", "Art", "Services"] as const;
                 <h3>{item.data.title}</h3>
                 <p>{item.data.description}</p>
                 <div style="margin-top: 16px;">
-                  <a class="btn primary" href={item.data.url ?? "#"}>
-                    Get it on Gumroad
-                  </a>
+                  {item.data.url ? (
+                    <a class="btn primary" href={item.data.url}>
+                      Get it on Gumroad
+                    </a>
+                  ) : (
+                    <span class="meta">Coming soon</span>
+                  )}
                 </div>
               </div>
             ))}
