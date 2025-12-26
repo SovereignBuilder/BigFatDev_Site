@@ -10,3 +10,8 @@
   from = "/whats-happening"
   to = "/whats-happening-now"
   status = 301
+
+[[redirects]]
+  from = "/shop"
+  to = "/404"
+  status = 404
