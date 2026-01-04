@@ -8,7 +8,7 @@ export interface Props {
 }
 
 const siteTitle = "Big Fat Developments";
-const defaultDescription = "Dev / Life / Play";
+const defaultDescription = "Human-AI Engineering / Dev Diary";
 const { title, description, currentPath } = Astro.props as Props;
 const pageTitle = title ? `${title} - ${siteTitle}` : siteTitle;
 const metaDescription = description ?? defaultDescription;
@@ -69,7 +69,7 @@ const metaDescription = description ?? defaultDescription;
               </a>
               <span class="site-brand__text">
                 <a class="site-brand__title" href="/">{siteTitle}</a>
-                <span class="site-brand__subtitle">Dev / Life / Play</span>
+                <span class="site-brand__subtitle">Human-AI Engineering / Dev Diary</span>
               </span>
             </div>
             <div class="site-actions">
@@ -111,37 +111,10 @@ const metaDescription = description ?? defaultDescription;
               <li>
                 <a
                   class="site-nav__link"
-                  href="/dev"
-                  aria-current={currentPath === "/dev" ? "page" : undefined}
-                >
-                  Dev (Projects)
-                </a>
-              </li>
-              <li>
-                <a
-                  class="site-nav__link"
-                  href="/whats-happening-now"
-                  aria-current={currentPath === "/whats-happening-now" ? "page" : undefined}
-                >
-                  Now
-                </a>
-              </li>
-              <li>
-                <a
-                  class="site-nav__link"
-                  href="/about"
-                  aria-current={currentPath === "/about" ? "page" : undefined}
-                >
-                  About
-                </a>
-              </li>
-              <li>
-                <a
-                  class="site-nav__link"
                   href="/support"
                   aria-current={currentPath === "/support" ? "page" : undefined}
                 >
-                  Contact / Support
+                  Contact
                 </a>
               </li>
             </ul>
@@ -154,7 +127,7 @@ const metaDescription = description ?? defaultDescription;
         </div>
       </main>
       <footer class="site-footer">
-        <div class="page-shell">?? 2025 MJ</div>
+        <div class="page-shell">© 2025 MJ</div>
       </footer>
     </div>
 

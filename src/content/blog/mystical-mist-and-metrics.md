@@ -1,7 +1,8 @@
 ---
 title: "Mist and Metrics"
 date: 2025-12-01
-section: "Methodical Musings"
+section: "Dev Diary"
+draft: true
 excerpt: "A short note on listening, timing, and not forcing the signal."
 ---
 

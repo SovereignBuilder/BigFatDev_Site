@@ -8,10 +8,60 @@
 
 [[redirects]]
   from = "/whats-happening"
-  to = "/whats-happening-now"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/whats-happening-now"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/dev"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/about"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/lab"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/tools"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/games"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/art"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/services"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/library"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/press"
+  to = "/"
   status = 301
 
 [[redirects]]
   from = "/shop"
-  to = "/404"
-  status = 404
+  to = "/"
+  status = 301

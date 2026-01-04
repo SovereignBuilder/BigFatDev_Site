@@ -25,11 +25,9 @@ const posts = (await getCollection("blog"))
     <h1>{section.title}</h1>
     <p class="meta">
       {section.title === "Dev Diary" &&
-        "Notes from building: small decisions, steady practice, honest progress."}
+        "Field notes on AI tools, products, and workflows: what worked, what didn't, what changed."}
       {section.title === "Human-AI Engineering" &&
-        "Human-aligned systems, evaluation, tooling, and practical workflows."}
-      {section.title === "Methodical Musings" &&
-        "Internal process: discipline, mindset, and steady reflection."}
+        "Exploring co-evolution: how humans and AI build, adapt, and collaborate side by side."}
     </p>
   </section>
 

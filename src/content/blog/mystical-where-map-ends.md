@@ -1,7 +1,8 @@
 ---
 title: "Where the Map Ends"
 date: 2025-09-07
-section: "Methodical Musings"
+section: "Dev Diary"
+draft: true
 excerpt: "A placeholder for future stories: symbols, dreams, and quiet meaning."
 ---
 

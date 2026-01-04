@@ -16,12 +16,12 @@ const latestBySection = BLOG_SECTIONS.map((section) => {
 
 <Layout
   title="Blog"
-  description="Three shelves: Dev Diary, Human-AI Engineering, Methodical Musings."
+  description="Two shelves: Dev Diary and Human-AI Engineering."
   currentPath="/blog"
 >
   <section class="content">
     <h1>Blog</h1>
-    <p class="meta">Three shelves. No tags. Each section has its own index.</p>
+    <p class="meta">Two shelves. No tags. Each section has its own index.</p>
   </section>
 
   <section style="margin-top: 32px;">
@@ -31,11 +31,9 @@ const latestBySection = BLOG_SECTIONS.map((section) => {
           <h3>{section.title}</h3>
           <p>
             {section.title === "Dev Diary" &&
-              "Notes from building: small decisions, steady practice, honest progress."}
+              "Field notes on AI tools, products, and workflows: what worked, what didn't, what changed."}
             {section.title === "Human-AI Engineering" &&
-              "Human-aligned systems, evaluation, tooling, and practical workflows."}
-            {section.title === "Methodical Musings" &&
-              "Internal process: discipline, mindset, and steady reflection."}
+              "Exploring co-evolution: how humans and AI build, adapt, and collaborate side by side."}
           </p>
           {latest ? (
             <div style="margin-top: 16px;">

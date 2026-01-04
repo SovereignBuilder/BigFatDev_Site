@@ -1,7 +1,6 @@
 export const BLOG_SECTIONS = [
   { slug: "dev-diary", title: "Dev Diary" },
   { slug: "human-ai-engineering", title: "Human-AI Engineering" },
-  { slug: "methodical-musings", title: "Methodical Musings" },
 ] as const;
 
 export const sectionFromSlug = (slug: string) =>

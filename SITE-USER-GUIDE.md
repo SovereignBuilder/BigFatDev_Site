@@ -12,8 +12,6 @@ npm run dev
 ## Content locations
 
 - Blog posts: `src/content/blog/*.md`
-- Projects: `src/content/projects/*.md`
-- Shop items: `src/content/shop/*.md`
 
 ## Blog posts
 
@@ -25,7 +23,7 @@ Create a new Markdown file in `src/content/blog/`.
 ---
 title: "Post title"
 date: 2025-12-12
-  section: "Dev Diary" # or "Human-AI Engineering" or "Methodical Musings"
+section: "Dev Diary" # or "Human-AI Engineering"
 excerpt: "Short summary shown on lists."
 coverImage: "/images/optional.jpg" # optional
 draft: false # optional
@@ -61,47 +59,7 @@ This is the body of the post.
 ### Notes
 
 - Use `draft: true` to hide a post from the site.
-- The `section` value must match one of the three allowed sections exactly.
-
-## Projects
-
-Create a new Markdown file in `src/content/projects/`.
-
-### Frontmatter schema
-
-```yaml
----
-title: "Project title"
-status: "Active" # or "Paused" or "Archived"
-description: "Short description."
-links:
-  - label: "repo"
-    url: "https://github.com/..."
----
-```
-
-### Where it appears
-
-- `/dev`
-
-## Shop items
-
-Create a new Markdown file in `src/content/shop/`.
-
-### Frontmatter schema
-
-```yaml
----
-title: "Item title"
-section: "Software" # or "Games" or "Art" or "Services"
-description: "Short description."
-url: "https://gumroad.com/l/your-item"
----
-```
-
-### Where it appears
-
-- `/shop`
+- The `section` value must match one of the two allowed sections exactly.
 
 ## Adding images
 
@@ -118,18 +76,6 @@ Both are referenced in `src/components/Layout.astro`.
 ## Theme toggle
 
 Theme selection is stored in `localStorage` and defaults to dark. The toggle is in the header.
-
-## Hidden stub pages
-
-These exist for future expansion and are not linked in the nav:
-
-- `/lab` - record experiments and possible experiment ideas.
-- `/tools` - list small utilities, scripts, or workflow aids.
-- `/games` - track game concepts, prototypes, and play notes.
-- `/art` - collect visual references, drafts, and style studies.
-- `/services` - outline service offerings, scope notes, and pricing ideas.
-- `/library` - store relevant public resources and reading notes.
-- `/press` - keep press references, blurbs, and media assets.
 
 ## Build and deploy
 

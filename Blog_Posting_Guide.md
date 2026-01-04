@@ -4,14 +4,13 @@ This guide explains, in plain language, how to add blog posts to the website and
 
 ## 1) What the blog "threads" are
 
-The site uses one blog with three threads (also called sections). Each thread has its own page and its own stream of posts. A single post belongs to exactly one thread.
+The site uses one blog with two threads (also called sections). Each thread has its own page and its own stream of posts. A single post belongs to exactly one thread.
 
 Current threads:
 - Dev Diary
 - Human-AI Engineering
-- Methodical Musings
 
-If you pick one of these threads in your post, the site will automatically place the post on that thread?s page and the main Blog page.
+If you pick one of these threads in your post, the site will automatically place the post on that thread's page and the main Blog page.
 
 ## 2) Where to create a new post
 
@@ -44,7 +43,7 @@ draft: false
 Field meanings:
 - title: The visible post title.
 - date: The post date. Use YYYY-MM-DD.
-- section: Choose one of the three threads exactly as written: Dev Diary, Human-AI Engineering, Methodical Musings.
+- section: Choose one of the two threads exactly as written: Dev Diary, Human-AI Engineering.
 - excerpt: A short summary (one or two sentences). It appears on the Blog page and section lists.
 - draft: If true, the post will be hidden. If false, the post will be published.
 
