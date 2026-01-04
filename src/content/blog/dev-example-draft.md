@@ -3,6 +3,7 @@ title: "Dev-Example-Draft"
 date: 2026-01-04
 section: "Dev Diary"
 excerpt: "Placeholder excerpt for a Dev Diary entry."
+topics: ["Topic one", "Topic two", "Topic three"]
 draft: true
 ---
 

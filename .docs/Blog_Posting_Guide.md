@@ -37,6 +37,7 @@ title: "Your post title"
 date: 2025-01-15
 section: "Dev Diary"
 excerpt: "A short summary that appears in lists."
+topics: ["Topic one", "Topic two", "Topic three"]
 draft: false
 ---
 
@@ -45,6 +46,7 @@ Field meanings:
 - date: The post date. Use YYYY-MM-DD.
 - section: Choose one of the two threads exactly as written: Dev Diary, Human-AI Engineering.
 - excerpt: A short summary (one or two sentences). It appears on the Blog page and section lists.
+- topics: A short list of monthly topics. These power the monthly overview panel and the topic pages, so keep them short and reuse the same wording.
 - draft: If true, the post will be hidden. If false, the post will be published.
 
 ## 4) Writing the post body
@@ -58,6 +60,7 @@ title: "Week of 2025-01-15 - Built, Learned, Next"
 date: 2025-01-15
 section: "Dev Diary"
 excerpt: "A calm weekly log covering progress and lessons."
+topics: ["Builds", "Lessons", "Next steps"]
 draft: false
 ---
 

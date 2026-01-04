@@ -15,6 +15,38 @@ if (!section) throw new Error("Unknown section");
 const posts = (await getCollection("blog"))
   .filter((post) => post.data.section === section.title && !post.data.draft)
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+const monthKey = (date: Date) =>
+  `${date.getUTCFullYear()}-${String(date.getUTCMonth() + 1).padStart(2, "0")}`;
+
+const monthLabel = (date: Date) =>
+  new Intl.DateTimeFormat("en-US", { month: "long", year: "numeric" }).format(date);
+
+const slugifyTopic = (topic: string) =>
+  topic
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)/g, "");
+
+const now = new Date();
+const currentMonthKey = monthKey(now);
+
+const postsByMonth = posts.reduce((acc, post) => {
+  const key = monthKey(post.data.date);
+  if (!acc.has(key)) acc.set(key, []);
+  acc.get(key).push(post);
+  return acc;
+}, new Map<string, typeof posts>());
+
+const monthEntries = Array.from(postsByMonth.entries()).sort(([a], [b]) =>
+  a > b ? -1 : a < b ? 1 : 0
+);
+
+const currentMonthPosts = postsByMonth.get(currentMonthKey) ?? [];
+const currentMonthTopics = Array.from(
+  new Set(currentMonthPosts.flatMap((post) => post.data.topics ?? []))
+);
+const archiveMonths = monthEntries.filter(([key]) => key !== currentMonthKey);
 ---
 
 <Layout title={section.title} description={`Posts in ${section.title}.`} currentPath="/blog">
@@ -32,18 +64,71 @@ const posts = (await getCollection("blog"))
   </section>
 
   <section style="margin-top: 24px;">
-    <ol class="list-grid">
-      {posts.map((post) => (
-        <li class="list-item">
-          <div style="display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap;">
-            <h3 style="margin: 0;">
-              <a href={`/blog/${section.slug}/${post.slug}`}>{post.data.title}</a>
-            </h3>
-            <span class="meta">{formatDate(post.data.date)}</span>
-          </div>
-          <p>{post.data.excerpt}</p>
-        </li>
-      ))}
-    </ol>
+    <h2 class="section-title">This Month's Blog Entries</h2>
+    {currentMonthPosts.length > 0 ? (
+      <>
+        {currentMonthTopics.length > 0 && (
+          <p class="meta" style="margin-top: 8px;">
+            {currentMonthTopics.join(" • ")}
+          </p>
+        )}
+        <p class="meta" style="margin-top: 6px;">
+          Topics show the main themes covered this month.
+        </p>
+        <ol class="list-grid" style="margin-top: 16px;">
+          {currentMonthPosts.map((post) => (
+            <li class="list-item">
+              <div style="display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap;">
+                <h3 style="margin: 0;">
+                  <a href={`/blog/${section.slug}/${post.slug}`}>{post.data.title}</a>
+                </h3>
+                <span class="meta">{formatDate(post.data.date)}</span>
+              </div>
+              <p>{post.data.excerpt}</p>
+            </li>
+          ))}
+        </ol>
+      </>
+    ) : (
+      <p class="meta" style="margin-top: 12px;">No posts yet this month.</p>
+    )}
   </section>
+
+  {archiveMonths.length > 0 && (
+    <section style="margin-top: 32px;">
+      <h2 class="section-title">Past Months Blog Entries</h2>
+      <p class="meta" style="margin-top: 8px;">
+        Topic links open all posts in this section that share that topic.
+      </p>
+      <div class="grid-3" style="margin-top: 16px;">
+        {archiveMonths.map(([key, monthPosts]) => {
+          const topics = Array.from(
+            new Set(
+              monthPosts.flatMap((post) => post.data.topics ?? [])
+            )
+          );
+          return (
+            <div class="card">
+              <h3 style="margin-top: 0;">{monthLabel(monthPosts[0].data.date)}</h3>
+              <p class="meta">{monthPosts.length} entries</p>
+              {topics.length > 0 ? (
+                <p class="meta">
+                  {topics.map((topic, index) => (
+                    <>
+                      <a href={`/blog/${section.slug}/topic/${slugifyTopic(topic)}`}>
+                        {topic}
+                      </a>
+                      {index < topics.length - 1 ? ", " : ""}
+                    </>
+                  ))}
+                </p>
+              ) : (
+                <p class="meta">Topics not listed.</p>
+              )}
+            </div>
+          );
+        })}
+      </div>
+    </section>
+  )}
 </Layout>

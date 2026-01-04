@@ -10,6 +10,7 @@ const blog = defineCollection({
       "Human-AI Engineering",
     ]),
     excerpt: z.string(),
+    topics: z.array(z.string()).optional(),
     coverImage: z.string().optional(),
     draft: z.boolean().optional(),
   }),

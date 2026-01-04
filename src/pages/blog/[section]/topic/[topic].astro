@@ -1,0 +1,87 @@
+---
+import Layout from "../../../../components/Layout.astro";
+import { getCollection } from "astro:content";
+import { formatDate } from "../../../../lib/format";
+import { sectionFromSlug, slugFromSection } from "../../../../lib/sections";
+
+const slugifyTopic = (topic: string) =>
+  topic
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)/g, "");
+
+export async function getStaticPaths() {
+  const posts = await getCollection("blog");
+  const paths = new Map<string, { section: string; topic: string; label: string }>();
+
+  posts
+    .filter((post) => !post.data.draft)
+    .forEach((post) => {
+      const sectionSlug = slugFromSection(post.data.section);
+      if (!sectionSlug) return;
+      const topics = post.data.topics ?? [];
+      topics.forEach((topic) => {
+        const topicSlug = slugifyTopic(topic);
+        const key = `${sectionSlug}:${topicSlug}`;
+        if (!paths.has(key)) {
+          paths.set(key, { section: sectionSlug, topic: topicSlug, label: topic });
+        }
+      });
+    });
+
+  return Array.from(paths.values()).map((entry) => ({
+    params: { section: entry.section, topic: entry.topic },
+    props: { topicLabel: entry.label },
+  }));
+}
+
+const { section: sectionSlug, topic: topicSlug } = Astro.params;
+const section = sectionFromSlug(sectionSlug);
+if (!section) throw new Error("Unknown section");
+
+const { topicLabel } = Astro.props as { topicLabel: string };
+
+const posts = (await getCollection("blog"))
+  .filter(
+    (post) =>
+      !post.data.draft &&
+      post.data.section === section.title &&
+      (post.data.topics ?? []).some((topic) => slugifyTopic(topic) === topicSlug)
+  )
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+---
+
+<Layout
+  title={`${topicLabel} - ${section.title}`}
+  description={`Posts tagged with ${topicLabel} in ${section.title}.`}
+  currentPath="/blog"
+>
+  <section class="content">
+    <p class="meta">
+      <a href="/blog">Blog</a> /
+      <a href={`/blog/${section.slug}`}>{section.title}</a>
+    </p>
+    <h1>{topicLabel}</h1>
+    <p class="meta">{section.title} topic page</p>
+  </section>
+
+  <section style="margin-top: 24px;">
+    {posts.length > 0 ? (
+      <ol class="list-grid">
+        {posts.map((post) => (
+          <li class="list-item">
+            <div style="display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap;">
+              <h3 style="margin: 0;">
+                <a href={`/blog/${section.slug}/${post.slug}`}>{post.data.title}</a>
+              </h3>
+              <span class="meta">{formatDate(post.data.date)}</span>
+            </div>
+            <p>{post.data.excerpt}</p>
+          </li>
+        ))}
+      </ol>
+    ) : (
+      <p class="meta">No posts found for this topic yet.</p>
+    )}
+  </section>
+</Layout>
